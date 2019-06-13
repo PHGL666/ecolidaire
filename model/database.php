@@ -162,8 +162,11 @@ function insertUser(string $pseudo, string $email, string $password, int $isAdmi
 
     $query = "
         INSERT INTO user(pseudo, email, password, admin)
-        VALUES (:pseudo, :email, SHA1(:password), :admin)
+        VALUES (:pseudo, :email, :password, :admin)
         ";
+
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
     $stmt = $connection->prepare($query);
     $stmt->bindParam(":pseudo", $pseudo);
     $stmt->bindParam(":email", $email);
@@ -197,7 +200,8 @@ function searchProject(string $search, ?int $categoryId): array
             project.*,
             DATE_FORMAT(project.date_start, '%d/%m/%Y') AS date_fr,
             category.label AS category_label,
-            COUNT(phm.member_id) AS nb_members
+            COUNT(phm.member_id) AS nb_members,
+            MATCH(project.title, project.description) AGAINST ('eaux') AS score
         FROM project
         INNER JOIN category ON project.category_id = category.id
         LEFT JOIN project_has_member AS phm ON project.id = phm.project_id
@@ -211,7 +215,7 @@ function searchProject(string $search, ?int $categoryId): array
         $query .= " AND category.id = $categoryId";
     }
     $query .= " GROUP BY project.id
-                ORDER BY project.date_start DESC
+                ORDER BY score DESC
     ";
 
     $stmt = $connection->prepare($query);
@@ -219,4 +223,26 @@ function searchProject(string $search, ?int $categoryId): array
     $stmt->execute();
 
     return $stmt->fetchAll();
+}
+
+function getUserByEmailPassword(string $email, $password) {
+    global $connection;
+
+    $query = "SELECT * FROM user WHERE email = :email";
+
+    $stmt = $connection->prepare($query);
+    $stmt->bindParam(":email", $email);
+    $stmt->execute();
+
+    $user = $stmt->fetch();
+
+    if (!$user) {
+        return false;
+    }
+
+    if (password_verify($password, $user["password"])) {
+        return $user;
+    } else {
+        return false;
+    }
 }
