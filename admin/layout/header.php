@@ -1,4 +1,6 @@
-<?php require_once __DIR__ . "/../security.php"; ?>
+<?php
+require_once __DIR__ . "/../../config/parameters.php";
+require_once __DIR__ . "/../security.php"; ?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -7,7 +9,7 @@
     <title>Administration</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= SITE_ADMIN  ; ?>node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -26,30 +28,23 @@
         }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="<?= SITE_ADMIN; ?>css/dashboard.css" rel="stylesheet">
 </head>
 <body>
-<?php require_once __DIR__ . "/menu.php"?>
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Administration</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="<?= SITE_ADMIN  ; ?>logout.php">Déconnexion</a>
+        </li>
+    </ul>
+</nav>
 
 <div class="container-fluid">
     <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <span data-feather="home"></span>
-                            Dashboard <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span data-feather="file"></span>
-                            Orders
-                        </a>
-                    </li>
-                </ul>
-
+                <?php require_once __DIR__ . "/menu.php"; ?>
             </div>
         </nav>
 
