@@ -268,3 +268,15 @@ function deleteRow(string $table, int $id): ?int {
     }
     return null;
 }
+
+function updateCategory(int $id, string $label) {
+    global $connection;
+
+    $query = "UPDATE category SET label = :label WHERE id = :id";
+
+    $stmt = $connection->prepare($query);
+    $stmt->bindParam(":id", $id);
+    $stmt->bindParam(":label", $label);
+
+    return $stmt->execute();
+}
