@@ -2,10 +2,12 @@ body {
     font-size: .875rem;
 }
 
-.feather {
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
+.navbar-nav {
+    flex-direction: row;
+}
+
+.navbar-nav li {
+    margin-left: 1em;
 }
 
 /*

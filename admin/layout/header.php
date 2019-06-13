@@ -10,6 +10,7 @@ require_once __DIR__ . "/../security.php"; ?>
 
     <!-- Bootstrap core CSS -->
     <link href="<?= SITE_ADMIN  ; ?>node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= SITE_ADMIN  ; ?>node_modules/font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -36,6 +37,12 @@ require_once __DIR__ . "/../security.php"; ?>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="<?= SITE_ADMIN  ; ?>logout.php">Déconnexion</a>
+        </li>
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="<?= SITE_URL; ?>">
+                <i class="fa fa-external-link"></i>
+                Front
+            </a>
         </li>
     </ul>
 </nav>
