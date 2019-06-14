@@ -12,6 +12,8 @@ require_once __DIR__ . "/../security.php";
     <!-- Bootstrap core CSS -->
     <link href="<?= SITE_ADMIN; ?>node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= SITE_ADMIN; ?>node_modules/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<?= SITE_ADMIN; ?>node_modules/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link href="<?= SITE_ADMIN; ?>node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
