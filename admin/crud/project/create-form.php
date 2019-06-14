@@ -9,7 +9,7 @@ require_once __DIR__ . "/../../layout/header.php";
 
     <h1>Créer un projet</h1>
 
-    <form method="post" action="create-query.php">
+    <form method="post" action="create-query.php" enctype="multipart/form-data">
         <div class="form-group">
             <label>Titre</label>
             <input type="text" name="title" class="form-control" placeholder="Titre" required>

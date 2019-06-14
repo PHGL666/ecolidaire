@@ -95,3 +95,37 @@ function searchProjects(string $search, ?int $categoryId) : array {
 
     return $stmt->fetchAll();
 }
+
+function insertProject(string $title, string $picture, string $description, int $price, string $dateStart, string $dateEnd, int $categoryId, array $memberIds) {
+    global $connection;
+
+    $query = "
+        INSERT INTO project (title, picture, description, price, date_start, date_end, category_id)
+        VALUES (:title, :picture, :description, :price, :date_start, :date_end, :category_id)
+    ";
+
+    $stmt = $connection->prepare($query);
+    $stmt->bindParam(":title", $title);
+    $stmt->bindParam(":picture", $picture);
+    $stmt->bindParam(":description", $description);
+    $stmt->bindParam(":price", $price);
+    $stmt->bindParam(":date_start", $dateStart);
+    $stmt->bindParam(":date_end", $dateEnd);
+    $stmt->bindParam(":category_id", $categoryId);
+    $stmt->execute();
+}
+
+function insertProjectHasMember(int $projectId, int $memberId) {
+    global $connection;
+
+    $query = "
+        INSERT INTO project_has_member (project_id, member_id)
+        VALUES (:project_id, :member_id)
+    ";
+
+    $stmt = $connection->prepare($query);
+    $stmt->bindParam(":project_id", $projectId);
+    $stmt->bindParam(":member_id", $memberId);
+    $stmt->execute();
+}
+
