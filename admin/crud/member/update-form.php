@@ -47,17 +47,6 @@ require_once __DIR__ . "/../../layout/header.php";
         <label>Date de fin</label>
         <input type="date" name="date_end" value="<?= $project["date_end"]; ?>" class="form-control">
     </div>
-    <div class="form-group">
-        <label>Membres</label>
-        <select name="member_ids[]" multiple class="form-control">
-            <?php foreach ($members as $member) : ?>
-                <option value="<?= $member["id"]; ?>">
-                    <?= $member["firstname"]; ?>
-                    <?= $member["lastname"]; ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
-    </div>
     <button type="submit" class="btn btn-success">
         <i class="fa fa-check"></i>
         Modifier
@@ -65,4 +54,5 @@ require_once __DIR__ . "/../../layout/header.php";
 </form>
 
 <?php require_once __DIR__ . "/../../layout/footer.php"; ?>
+
 
