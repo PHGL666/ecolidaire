@@ -7,7 +7,7 @@ require_once __DIR__ . "/../../../model/database.php";
 $id = $_POST["id"];
 
 //Supprimer la ligne en base de données
-$errCode = deleteRow("category",$id);
+$errCode = deleteRow("project",$id);
 
 if ($errCode){
     $_SESSION["flash"][] = ["type" => "danger", "message" => "Impossible de supprimer cet élément !"];
